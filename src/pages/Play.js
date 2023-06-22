@@ -59,7 +59,7 @@ const Play = () => {
           </ul>
         </>
       )}
-      <button onClick={handleReturnHome}>Повернутися до головної</button>
+      <button onClick={handleReturnHome}>cancel a quiz and go home</button>
     </div>
   );
 };

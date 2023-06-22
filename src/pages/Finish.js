@@ -22,13 +22,13 @@ const Finish = () => {
 
   return (
     <div>
-      <h2>Результати квізу</h2>
+      <h2>Result</h2>
       <Link to="/">
         <button>Home</button>
       </Link>
 
       <p>
-        Ваш результат: {score} з {quizData.length}
+        your score is: {score} out of {quizData.length}
       </p>
     </div>
   );

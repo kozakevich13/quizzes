@@ -43,13 +43,13 @@ const Home = () => {
 
   return (
     <div className="quiz-list">
-      <h2>Список квізів</h2>
-      <button onClick={handleRandomQuiz}>Мені пощастить</button>
+      <h2>list of quizzes</h2>
+      <button onClick={handleRandomQuiz}>I'm lucky</button>
       {quizzes.map((quiz, index) => (
         <div className="quiz-list-item" key={index}>
           <h3>{quiz.quiz}</h3>
-          <h4>Кількість питань: {quiz.questionCount}</h4>
-          <button onClick={() => handlePlayQuiz(quiz)}>Грати</button>
+          <h4>number of questions: {quiz.questionCount}</h4>
+          <button onClick={() => handlePlayQuiz(quiz)}>Play</button>
         </div>
       ))}
     </div>
