@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -19,6 +19,14 @@ const Home = () => {
     { quiz: "Science: Computers", questionCount: 10, category: 18 },
   ]);
   const navigate = useNavigate();
+  const [points, setPoints] = useState(0);
+
+  useEffect(() => {
+    const existingPoints = parseInt(localStorage.getItem("points"));
+    if (!isNaN(existingPoints)) {
+      setPoints(existingPoints);
+    }
+  }, []);
 
   const handlePlayQuiz = async (quiz) => {
     let amount = quiz.questionCount;
@@ -28,9 +36,7 @@ const Home = () => {
         `https://opentdb.com/api.php?amount=${amount}&category=${category}&type=multiple`
       );
       const data = await response.json();
-      console.log(data.results);
       navigate("/play", { state: data.results });
-      console.log("Quiz data:", data);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
     }
@@ -41,14 +47,21 @@ const Home = () => {
     handlePlayQuiz(randomQuiz);
   };
 
+  const handleClearPoints = () => {
+    localStorage.setItem("points", "0");
+    setPoints(0);
+  };
+
   return (
     <div className="quiz-list">
-      <h2>list of quizzes</h2>
-      <button onClick={handleRandomQuiz}>I'm lucky</button>
+      <h2>List of Quizzes</h2>
+      <p>Points: {points}</p>
+      <button onClick={handleRandomQuiz}>I'm Lucky</button>
+      <button onClick={handleClearPoints}>Clear Points</button>
       {quizzes.map((quiz, index) => (
         <div className="quiz-list-item" key={index}>
           <h3>{quiz.quiz}</h3>
-          <h4>number of questions: {quiz.questionCount}</h4>
+          <h4>Number of Questions: {quiz.questionCount}</h4>
           <button onClick={() => handlePlayQuiz(quiz)}>Play</button>
         </div>
       ))}

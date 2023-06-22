@@ -24,6 +24,10 @@
   color: white;
 }
 
+button {
+  cursor: pointer;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -49,4 +53,16 @@
 .quiz-list-item > * {
   display: table-cell;
   padding: 5px;
+}
+
+.user-result {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quiz-questions-section {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
 }

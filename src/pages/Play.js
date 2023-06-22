@@ -56,8 +56,8 @@ const Play = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Квіз</h2>
+    <div className="quiz-questions-section">
+      <h2>Quiz</h2>
       {currentQuestion && (
         <>
           <h3>{currentQuestion.category}</h3>
