@@ -39,7 +39,10 @@ const Play = () => {
     currentQuestion.correct_answer,
   ]);
 
-  console.log(currentQuestion.correct_answer);
+  const handleReturnHome = () => {
+    navigate("/");
+  };
+
   return (
     <div>
       <h2>Квіз</h2>
@@ -56,6 +59,7 @@ const Play = () => {
           </ul>
         </>
       )}
+      <button onClick={handleReturnHome}>Повернутися до головної</button>
     </div>
   );
 };
