@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Finish = () => {
   const location = useLocation();
@@ -23,6 +23,10 @@ const Finish = () => {
   return (
     <div>
       <h2>Результати квізу</h2>
+      <Link to="/">
+        <button>Home</button>
+      </Link>
+
       <p>
         Ваш результат: {score} з {quizData.length}
       </p>
