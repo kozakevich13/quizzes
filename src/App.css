@@ -43,7 +43,13 @@ button {
 
 .quiz-list {
   display: table;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.quiz-list h2 {
+  width: 200px;
+  margin: 0 auto;
 }
 
 .quiz-list-item {
