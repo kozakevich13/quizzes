@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Play = () => {
@@ -6,6 +6,7 @@ const Play = () => {
   const quizData = location.state;
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [startTime, setStartTime] = useState(null);
   const navigate = useNavigate();
 
   const currentQuestion = quizData[currentQuestionIndex];
@@ -28,8 +29,15 @@ const Play = () => {
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      const endTime = new Date();
+      const timeTaken = Math.floor((endTime - startTime) / 1000); // Time in seconds
+
       navigate("/finish", {
-        state: { quizData, userAnswers: [...userAnswers, selectedAnswer] },
+        state: {
+          quizData,
+          userAnswers: [...userAnswers, selectedAnswer],
+          timeTaken,
+        },
       });
     }
   };
@@ -42,6 +50,10 @@ const Play = () => {
   const handleReturnHome = () => {
     navigate("/");
   };
+
+  useEffect(() => {
+    setStartTime(new Date());
+  }, []);
 
   return (
     <div>
@@ -59,7 +71,7 @@ const Play = () => {
           </ul>
         </>
       )}
-      <button onClick={handleReturnHome}>cancel a quiz and go home</button>
+      <button onClick={handleReturnHome}>Cancel the quiz and go home</button>
     </div>
   );
 };

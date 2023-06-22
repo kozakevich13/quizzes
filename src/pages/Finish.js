@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Finish = () => {
   const location = useLocation();
-  const { quizData, userAnswers } = location.state;
+  const { quizData, userAnswers, timeTaken } = location.state;
   const [score, setScore] = useState(0);
 
   useEffect(() => {
@@ -30,6 +30,8 @@ const Finish = () => {
       <p>
         your score is: {score} out of {quizData.length}
       </p>
+
+      <p>your time: {timeTaken} sec</p>
     </div>
   );
 };
