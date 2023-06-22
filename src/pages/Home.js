@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Button, Select } from "antd";
+
+const { Option } = Select;
 
 const Home = () => {
   const [quizzes] = useState([
@@ -37,7 +40,6 @@ const Home = () => {
       );
       const data = await response.json();
       navigate("/play", { state: data.results });
-      console.log(data.results);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
     }
@@ -54,33 +56,33 @@ const Home = () => {
     setPoints(0);
   };
 
-  const handleDifficultyChange = (event) => {
-    setSelectedDifficulty(event.target.value);
+  const handleDifficultyChange = (value) => {
+    setSelectedDifficulty(value);
   };
 
   return (
     <div className="quiz-list">
       <h2>List of Quizzes</h2>
       <p>Points: {points}</p>
-      <button onClick={handleRandomQuiz}>I'm Lucky</button>
+      <Button onClick={handleRandomQuiz}>I'm Lucky</Button>
       <Link to="/statistics">
-        <button>Statistics</button>
+        <Button>Statistics</Button>
       </Link>
-      <button onClick={handleClearPoints}>Clear Statistics</button>
+      <Button onClick={handleClearPoints}>Clear Statistics</Button>
       <div>
         <span>Select Difficulty: </span>
-        <select value={selectedDifficulty} onChange={handleDifficultyChange}>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
+        <Select value={selectedDifficulty} onChange={handleDifficultyChange}>
+          <Option value="easy">Easy</Option>
+          <Option value="medium">Medium</Option>
+          <Option value="hard">Hard</Option>
+        </Select>
       </div>
 
       {quizzes.map((quiz, index) => (
         <div className="quiz-list-item" key={index}>
           <h3>{quiz.quiz}</h3>
           <h4>Number of Questions: {quiz.questionCount}</h4>
-          <button onClick={() => handlePlayQuiz(quiz)}>Play</button>
+          <Button onClick={() => handlePlayQuiz(quiz)}>Play</Button>
         </div>
       ))}
     </div>

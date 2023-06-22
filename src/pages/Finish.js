@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Button } from "antd";
 
 const Finish = () => {
   const location = useLocation();
@@ -43,7 +44,7 @@ const Finish = () => {
     <div className="user-result">
       <h2>Result</h2>
       <Link to="/">
-        <button>Home</button>
+        <Button>Home</Button>
       </Link>
 
       <p>

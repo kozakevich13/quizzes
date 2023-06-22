@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "antd";
 
 const Play = () => {
   const location = useLocation();
@@ -62,16 +63,22 @@ const Play = () => {
         <>
           <h3>{currentQuestion.category}</h3>
           <p>{currentQuestion.question}</p>
-          <ul>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             {allAnswers.map((answer, index) => (
-              <li key={index} onClick={() => handleAnswerSelect(answer)}>
+              <Button
+                key={index}
+                onClick={() => handleAnswerSelect(answer)}
+                style={{ marginBottom: "8px", width: "100%" }}
+              >
                 {answer}
-              </li>
+              </Button>
             ))}
-          </ul>
+          </div>
         </>
       )}
-      <button onClick={handleReturnHome}>Cancel the quiz and go home</button>
+      <Button danger onClick={handleReturnHome}>
+        Cancel the quiz and go home
+      </Button>
     </div>
   );
 };
