@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [quizzes] = useState([
@@ -6,6 +7,7 @@ const Home = () => {
     { quiz: "Entertainment: Books", questionCount: 8, category: 10 },
     { quiz: "Entertainment: Film", questionCount: 10, category: 11 },
   ]);
+  const navigate = useNavigate();
 
   const handlePlayQuiz = async (quiz) => {
     let amount = quiz.questionCount;
@@ -15,6 +17,8 @@ const Home = () => {
         `https://opentdb.com/api.php?amount=${amount}&category=${category}&type=multiple`
       );
       const data = await response.json();
+      console.log(data.results);
+      navigate("/play", { state: data.results });
       console.log("Quiz data:", data);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
