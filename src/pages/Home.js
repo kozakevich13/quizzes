@@ -20,7 +20,7 @@ const Home = () => {
   ]);
   const navigate = useNavigate();
   const [points, setPoints] = useState(0);
-
+  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   useEffect(() => {
     const existingPoints = parseInt(localStorage.getItem("points"));
     if (!isNaN(existingPoints)) {
@@ -33,10 +33,11 @@ const Home = () => {
     let category = quiz.category;
     try {
       const response = await fetch(
-        `https://opentdb.com/api.php?amount=${amount}&category=${category}&type=multiple`
+        `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${selectedDifficulty}&type=multiple`
       );
       const data = await response.json();
       navigate("/play", { state: data.results });
+      console.log(data.results);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
     }
@@ -53,6 +54,10 @@ const Home = () => {
     setPoints(0);
   };
 
+  const handleDifficultyChange = (event) => {
+    setSelectedDifficulty(event.target.value);
+  };
+
   return (
     <div className="quiz-list">
       <h2>List of Quizzes</h2>
@@ -62,6 +67,15 @@ const Home = () => {
         <button>Statistics</button>
       </Link>
       <button onClick={handleClearPoints}>Clear Statistics</button>
+      <div>
+        <span>Select Difficulty: </span>
+        <select value={selectedDifficulty} onChange={handleDifficultyChange}>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+
       {quizzes.map((quiz, index) => (
         <div className="quiz-list-item" key={index}>
           <h3>{quiz.quiz}</h3>
