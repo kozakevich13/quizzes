@@ -12,9 +12,10 @@ const Finish = () => {
       let count = 0;
       for (let i = 0; i < quizData.length; i++) {
         if (userAnswers[i] === quizData[i].correct_answer) {
-          setPoints((prevPoints) => prevPoints + 2);
+          count += 2;
         }
       }
+      setPoints(count);
     };
 
     calculateScore();
@@ -37,11 +38,11 @@ const Finish = () => {
       </Link>
 
       <p>
-        Your score is: {points} out of {quizData.length * 2}
+        Your score is: {points} out of {quizData.length}
       </p>
 
-      <p>Сorrect answers: {points}</p>
-      <p>Wrong answers: {quizData.length * 2 - points} </p>
+      <p>Correct answers: {points}</p>
+      <p>Wrong answers: {quizData.length - points}</p>
 
       <p>Your time: {timeTaken} sec</p>
       <p>Your points: +{points}</p>
