@@ -3,9 +3,20 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [quizzes] = useState([
-    { quiz: "General Knowledge", questionCount: 5, category: 9 },
-    { quiz: "Entertainment: Books", questionCount: 8, category: 10 },
+    { quiz: "General Knowledge", questionCount: 10, category: 9 },
+    { quiz: "Entertainment: Books", questionCount: 10, category: 10 },
     { quiz: "Entertainment: Film", questionCount: 10, category: 11 },
+    { quiz: "Entertainment: Music", questionCount: 10, category: 12 },
+    {
+      quiz: "Entertainment: Musicals & Theatres",
+      questionCount: 10,
+      category: 13,
+    },
+    { quiz: "Entertainment: Television", questionCount: 10, category: 14 },
+    { quiz: "Entertainment: Video Games", questionCount: 10, category: 15 },
+    { quiz: "Entertainment: Board Games", questionCount: 10, category: 15 },
+    { quiz: "Science & Nature", questionCount: 10, category: 17 },
+    { quiz: "Science: Computers", questionCount: 10, category: 18 },
   ]);
   const navigate = useNavigate();
 
@@ -25,12 +36,12 @@ const Home = () => {
     }
   };
   return (
-    <div>
+    <div className="quiz-list">
       <h2>Список квізів</h2>
       {quizzes.map((quiz, index) => (
-        <div key={index}>
+        <div className="quiz-list-item" key={index}>
           <h3>{quiz.quiz}</h3>
-          <p>Кількість питань: {quiz.questionCount}</p>
+          <h4>Кількість питань: {quiz.questionCount}</h4>
           <button onClick={() => handlePlayQuiz(quiz)}>Грати</button>
         </div>
       ))}

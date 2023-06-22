@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.quiz-list {
+  display: table;
+  width: 100%;
+}
+
+.quiz-list-item {
+  display: table-row;
+}
+
+.quiz-list-item > * {
+  display: table-cell;
+  padding: 5px;
+}
