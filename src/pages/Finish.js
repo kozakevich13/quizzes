@@ -43,7 +43,7 @@ const Finish = () => {
   return (
     <div className="user-result">
       <h2>Result</h2>
-      <Link to="/">
+      <Link to="/quizzes/">
         <Button>Home</Button>
       </Link>
 

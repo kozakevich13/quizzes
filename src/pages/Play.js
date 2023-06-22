@@ -31,9 +31,9 @@ const Play = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       const endTime = new Date();
-      const timeTaken = Math.floor((endTime - startTime) / 1000); // Time in seconds
+      const timeTaken = Math.floor((endTime - startTime) / 1000);
 
-      navigate("/finish", {
+      navigate("/quizzes/finish", {
         state: {
           quizData,
           userAnswers: [...userAnswers, selectedAnswer],
@@ -49,7 +49,7 @@ const Play = () => {
   ]);
 
   const handleReturnHome = () => {
-    navigate("/");
+    navigate("/quizzes/");
   };
 
   useEffect(() => {

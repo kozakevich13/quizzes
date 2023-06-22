@@ -9,7 +9,7 @@ const Statistics = () => {
   return (
     <div className="statistics">
       <h2>Statistics</h2>
-      <Link to="/">
+      <Link to="/quizzes/">
         <Button>Home</Button>
       </Link>
       <p>Total quizzes taken: {quizCount}</p>

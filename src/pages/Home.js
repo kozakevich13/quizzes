@@ -39,7 +39,7 @@ const Home = () => {
         `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${selectedDifficulty}&type=multiple`
       );
       const data = await response.json();
-      navigate("/play", { state: data.results });
+      navigate("/quizzes/play", { state: data.results });
     } catch (error) {
       console.error("Error fetching quiz data:", error);
     }
@@ -65,7 +65,7 @@ const Home = () => {
       <h2>List of Quizzes</h2>
       <p>Points: {points}</p>
       <Button onClick={handleRandomQuiz}>I'm Lucky</Button>
-      <Link to="/statistics">
+      <Link to="/quizzes/statistics">
         <Button>Statistics</Button>
       </Link>
       <Button onClick={handleClearPoints}>Clear Statistics</Button>
