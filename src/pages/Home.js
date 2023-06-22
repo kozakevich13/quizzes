@@ -35,9 +35,16 @@ const Home = () => {
       console.error("Error fetching quiz data:", error);
     }
   };
+
+  const handleRandomQuiz = async () => {
+    const randomQuiz = quizzes[Math.floor(Math.random() * quizzes.length)];
+    handlePlayQuiz(randomQuiz);
+  };
+
   return (
     <div className="quiz-list">
       <h2>Список квізів</h2>
+      <button onClick={handleRandomQuiz}>Мені пощастить</button>
       {quizzes.map((quiz, index) => (
         <div className="quiz-list-item" key={index}>
           <h3>{quiz.quiz}</h3>
