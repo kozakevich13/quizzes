@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [quizzes] = useState([
@@ -49,6 +49,7 @@ const Home = () => {
 
   const handleClearPoints = () => {
     localStorage.setItem("points", "0");
+    localStorage.setItem("quizCount", "0");
     setPoints(0);
   };
 
@@ -57,7 +58,10 @@ const Home = () => {
       <h2>List of Quizzes</h2>
       <p>Points: {points}</p>
       <button onClick={handleRandomQuiz}>I'm Lucky</button>
-      <button onClick={handleClearPoints}>Clear Points</button>
+      <Link to="/statistics">
+        <button>Statistics</button>
+      </Link>
+      <button onClick={handleClearPoints}>Clear Statistics</button>
       {quizzes.map((quiz, index) => (
         <div className="quiz-list-item" key={index}>
           <h3>{quiz.quiz}</h3>
