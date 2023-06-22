@@ -10,6 +10,14 @@ const Play = () => {
 
   const currentQuestion = quizData[currentQuestionIndex];
 
+  const shuffleAnswers = (answers) => {
+    for (let i = answers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [answers[i], answers[j]] = [answers[j], answers[i]];
+    }
+    return answers;
+  };
+
   const handleAnswerSelect = (selectedAnswer) => {
     setUserAnswers((prevAnswers) => {
       const updatedUserAnswers = [...prevAnswers];
@@ -26,6 +34,11 @@ const Play = () => {
     }
   };
 
+  const allAnswers = shuffleAnswers([
+    ...currentQuestion.incorrect_answers,
+    currentQuestion.correct_answer,
+  ]);
+
   console.log(currentQuestion.correct_answer);
   return (
     <div>
@@ -35,16 +48,11 @@ const Play = () => {
           <h3>{currentQuestion.category}</h3>
           <p>{currentQuestion.question}</p>
           <ul>
-            {currentQuestion.incorrect_answers.map((answer, index) => (
+            {allAnswers.map((answer, index) => (
               <li key={index} onClick={() => handleAnswerSelect(answer)}>
                 {answer}
               </li>
             ))}
-            <li
-              onClick={() => handleAnswerSelect(currentQuestion.correct_answer)}
-            >
-              {currentQuestion.correct_answer}
-            </li>
           </ul>
         </>
       )}
